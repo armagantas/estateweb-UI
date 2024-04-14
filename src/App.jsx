@@ -22,6 +22,10 @@ function App() {
           path: "/:id",
           element: <SinglePage />,
         },
+        {
+          path: "/list/:id",
+          element: <SinglePage />,
+        },
       ],
     },
   ]);
