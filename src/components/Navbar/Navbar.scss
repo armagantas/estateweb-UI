@@ -28,8 +28,8 @@ nav {
       font-weight: bold;
       font-size: 20px;
       display: flex;
-      gap: 10px;
       align-items: center;
+      gap: 10px;
 
       img {
         width: 28px;
@@ -46,7 +46,6 @@ nav {
       }
     }
   }
-
   .right {
     flex: 2;
     display: flex;
@@ -121,7 +120,7 @@ nav {
       }
 
       @include sm {
-        display: initial;
+        display: inline;
       }
     }
 
