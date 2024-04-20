@@ -1,13 +1,15 @@
 import { useContext, useState } from "react";
 import "./ProfileUpdatePage.scss";
 import { AuthContext } from "../../context/AuthContext";
-import apiRequest from "../../lib/ApiRequest.js";
+import apiRequest from "../../lib/ApiRequest";
 import { useNavigate } from "react-router-dom";
 
 function ProfileUpdatePage() {
-  const [error, setError] = useState("");
   const { currentUser, updateUser } = useContext(AuthContext);
+  const [error, setError] = useState("");
+
   const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -15,16 +17,16 @@ function ProfileUpdatePage() {
     const { username, email, password } = Object.fromEntries(formData);
 
     try {
-      const response = await apiRequest.put(`/user/${currentUser.id}`, {
+      const res = await apiRequest.put(`/user/66229efdd07f8def0bfb44fb`, {
         username,
         email,
         password,
       });
-      updateUser(response.data);
+      updateUser(res.data);
       navigate("/profile");
-    } catch (error) {
-      console.log(error);
-      setError(error.response.data.message);
+    } catch (err) {
+      console.log(err);
+      setError(err.response.data.message);
     }
   };
 
@@ -60,11 +62,7 @@ function ProfileUpdatePage() {
         </form>
       </div>
       <div className="sideContainer">
-        <img
-          src={currentUser.avatar || "/favicon.png"}
-          alt=""
-          className="avatar"
-        />
+        <img src={"/favicon.png"} alt="" className="avatar" />
       </div>
     </div>
   );
