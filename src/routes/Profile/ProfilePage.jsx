@@ -19,6 +19,7 @@ const ProfilePage = () => {
       console.log(error);
     }
   };
+
   return (
     <div className="profilePage">
       <div className="details">
@@ -31,14 +32,13 @@ const ProfilePage = () => {
           </div>
           <div className="info">
             <span>
-              Avatar:{" "}
-              <img src={currentUser.userInfo.avatar || "/favicon.png"} alt="" />
+              Avatar: <img src={currentUser.avatar || "/favicon.png"} alt="" />
             </span>
             <span>
-              Username: <b>{currentUser.userInfo.username}</b>
+              Username: <b>{currentUser.username}</b>
             </span>
             <span>
-              Email: <b>{currentUser.userInfo.email}</b>
+              Email: <b>{currentUser.email}</b>
             </span>
             <button onClick={handleLogout}>Logout</button>
           </div>

@@ -23,8 +23,8 @@ const Navbar = () => {
       <div className="right">
         {currentUser ? (
           <div className="user">
-            <img src={currentUser.userInfo.avatar || "/favicon.png"} alt="" />
-            <span>{currentUser.userInfo.username}</span>
+            <img src={currentUser.avatar || "/favicon.png"} alt="" />
+            <span>{currentUser.username}</span>
             <Link to="/profile" className="profile">
               <div className="notification">3</div>
               <span>profile</span>

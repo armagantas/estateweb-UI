@@ -15,14 +15,11 @@ function ProfileUpdatePage() {
     const { username, email, password } = Object.fromEntries(formData);
 
     try {
-      const response = await apiRequest.put(
-        `/user/${currentUser.userInfo.id}`,
-        {
-          username,
-          email,
-          password,
-        }
-      );
+      const response = await apiRequest.put(`/user/${currentUser.id}`, {
+        username,
+        email,
+        password,
+      });
       updateUser(response.data);
       navigate("/profile");
     } catch (error) {
@@ -42,7 +39,7 @@ function ProfileUpdatePage() {
               id="username"
               name="username"
               type="text"
-              defaultValue={currentUser.userInfo.username}
+              defaultValue={currentUser.username}
             />
           </div>
           <div className="item">
@@ -51,7 +48,7 @@ function ProfileUpdatePage() {
               id="email"
               name="email"
               type="email"
-              defaultValue={currentUser.userInfo.email}
+              defaultValue={currentUser.email}
             />
           </div>
           <div className="item">
@@ -64,7 +61,7 @@ function ProfileUpdatePage() {
       </div>
       <div className="sideContainer">
         <img
-          src={currentUser.userInfo.avatar || "/favicon.png"}
+          src={currentUser.avatar || "/favicon.png"}
           alt=""
           className="avatar"
         />
