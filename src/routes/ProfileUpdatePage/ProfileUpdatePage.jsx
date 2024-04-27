@@ -30,6 +30,8 @@ function ProfileUpdatePage() {
     }
   };
 
+  console.log(currentUser.userInfo.username);
+
   return (
     <div className="profileUpdatePage">
       <div className="formContainer">
@@ -41,7 +43,7 @@ function ProfileUpdatePage() {
               id="username"
               name="username"
               type="text"
-              defaultValue={currentUser.username}
+              defaultValue={currentUser.userInfo.username}
             />
           </div>
           <div className="item">
