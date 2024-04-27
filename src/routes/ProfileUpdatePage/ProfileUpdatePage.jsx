@@ -17,7 +17,7 @@ function ProfileUpdatePage() {
     const { username, email, password } = Object.fromEntries(formData);
 
     try {
-      const res = await apiRequest.put(`/user/66229efdd07f8def0bfb44fb`, {
+      const res = await apiRequest.put(`/user/${currentUser.userInfo.id}`, {
         username,
         email,
         password,
@@ -31,6 +31,7 @@ function ProfileUpdatePage() {
   };
 
   console.log(currentUser.userInfo.username);
+  console.log(currentUser.userInfo.id);
 
   return (
     <div className="profileUpdatePage">

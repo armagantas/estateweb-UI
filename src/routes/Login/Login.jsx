@@ -1,8 +1,8 @@
 import { useContext, useState } from "react";
 import "./Login.scss";
 import { Link, useNavigate } from "react-router-dom";
-import ApiRequest from "../../lib/ApiRequest";
 import { AuthContext } from "../../context/AuthContext";
+import axios from "axios";
 
 function Login() {
   const [error, setError] = useState("");
@@ -21,19 +21,27 @@ function Login() {
     const password = formData.get("password");
 
     try {
-      const response = await ApiRequest.post(`/auth/login`, {
-        username,
-        password,
-      });
-      updateUser(response.data);
+      const response = await axios.post(
+        `http://localhost:8801/api/auth/login`,
+        {
+          username,
+          password,
+        },
+        {
+          withCredentials: true, // credentials: 'include' ile aynı işlevi yapar
+        }
+      );
+
+      localStorage.setItem("user", JSON.stringify(response.data));
+
       navigate("/");
     } catch (err) {
-      console.log(err);
       setError(err.response.data.message);
     } finally {
       setIsLoading(false);
     }
   };
+
   return (
     <div className="login">
       <div className="formContainer">

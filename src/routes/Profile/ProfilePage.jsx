@@ -1,10 +1,10 @@
 import Chat from "../../components/Chat/Chat";
 import List from "../../components/List/List";
 import "./ProfilePage.scss";
-import apiRequest from "../../lib/ApiRequest";
 import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
+import axios from "axios";
 
 const ProfilePage = () => {
   const navigate = useNavigate();
@@ -12,8 +12,8 @@ const ProfilePage = () => {
 
   const handleLogout = async () => {
     try {
-      await apiRequest.post("/auth/logout");
-      updateUser(null);
+      await axios.post("http://localhost:8801/api/auth/logout");
+      localStorage.removeItem("user");
       navigate("/");
     } catch (error) {
       console.log(error);
