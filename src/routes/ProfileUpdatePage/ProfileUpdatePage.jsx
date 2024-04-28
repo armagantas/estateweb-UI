@@ -17,7 +17,7 @@ function ProfileUpdatePage() {
     const { username, email, password } = Object.fromEntries(formData);
 
     try {
-      const res = await apiRequest.put(`/user/${currentUser.userInfo.id}`, {
+      const res = await apiRequest.put(`/user/${currentUser.id}`, {
         username,
         email,
         password,
@@ -30,9 +30,6 @@ function ProfileUpdatePage() {
     }
   };
 
-  console.log(currentUser.userInfo.username);
-  console.log(currentUser.userInfo.id);
-
   return (
     <div className="profileUpdatePage">
       <div className="formContainer">
@@ -44,7 +41,7 @@ function ProfileUpdatePage() {
               id="username"
               name="username"
               type="text"
-              defaultValue={currentUser.userInfo.username}
+              defaultValue={currentUser.username}
             />
           </div>
           <div className="item">

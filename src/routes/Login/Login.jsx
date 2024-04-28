@@ -32,7 +32,7 @@ function Login() {
         }
       );
 
-      localStorage.setItem("user", JSON.stringify(response.data));
+      updateUser(response.data);
 
       navigate("/");
     } catch (err) {

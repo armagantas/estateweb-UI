@@ -13,7 +13,7 @@ const ProfilePage = () => {
   const handleLogout = async () => {
     try {
       await axios.post("http://localhost:8801/api/auth/logout");
-      localStorage.removeItem("user");
+      updateUser(null);
       navigate("/");
     } catch (error) {
       console.log(error);
