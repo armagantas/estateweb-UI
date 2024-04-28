@@ -1,8 +1,8 @@
 import { useContext, useState } from "react";
 import "./ProfileUpdatePage.scss";
 import { AuthContext } from "../../context/AuthContext";
-import apiRequest from "../../lib/ApiRequest";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function ProfileUpdatePage() {
   const { currentUser, updateUser } = useContext(AuthContext);
@@ -17,12 +17,23 @@ function ProfileUpdatePage() {
     const { username, email, password } = Object.fromEntries(formData);
 
     try {
-      const res = await apiRequest.put(`/user/${currentUser.id}`, {
-        username,
-        email,
-        password,
-      });
-      updateUser(res.data);
+      const token = localStorage.getItem("token");
+      const response = await axios.put(
+        `http://localhost:8801/api/user/${currentUser.id}`,
+        {
+          username,
+          email,
+          password,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      updateUser(response.data);
+      console.log(response.data);
       navigate("/profile");
     } catch (err) {
       console.log(err);

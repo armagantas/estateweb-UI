@@ -8,6 +8,8 @@ const Home = () => {
 
   console.log(currentUser);
 
+  const token = localStorage.getItem("token");
+  console.log(token);
   return (
     <div className="homePage">
       <div className="textContainer">
